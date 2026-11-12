@@ -1,0 +1,91 @@
+backend:
+  name: github
+  repo: IryHan/iryhan.github.io
+  branch: main
+  auth_methods:
+    - token
+
+media_folder: images/uploads
+public_folder: /images/uploads
+
+site_url: https://iryhan.github.io
+display_url: https://iryhan.github.io
+logo_url: https://iryhan.github.io/
+
+collections:
+  - name: profile
+    label: Profile
+    files:
+      - name: main
+        label: Personal Profile
+        file: content/profile.yml
+        format: yaml
+        fields:
+          - { label: Name (English), name: name_en, widget: string }
+          - { label: Name (Chinese), name: name_zh, widget: string }
+          - { label: Headline (English), name: headline_en, widget: string }
+          - { label: Headline (Chinese), name: headline_zh, widget: string }
+          - { label: Biography (English), name: bio_en, widget: markdown }
+          - { label: Biography (Chinese), name: bio_zh, widget: markdown }
+          - { label: Education (English), name: education_en, widget: text }
+          - { label: Education (Chinese), name: education_zh, widget: text }
+          - { label: Email, name: email, widget: string, required: false }
+          - { label: LinkedIn URL, name: linkedin, widget: string, required: false }
+          - { label: Portrait, name: portrait, widget: image, required: false }
+
+  - name: publications
+    label: Publications
+    label_singular: Publication
+    folder: content/publications
+    create: true
+    extension: yml
+    format: yaml
+    slug: "{{year}}-{{slug}}"
+    sortable_fields: [year, title]
+    fields:
+      - { label: Title, name: title, widget: string }
+      - { label: Authors, name: authors, widget: string }
+      - { label: Year, name: year, widget: number, value_type: int }
+      - { label: Journal / Publisher, name: venue, widget: string }
+      - { label: DOI, name: doi, widget: string, required: false }
+      - { label: Publication URL, name: url, widget: string, required: false }
+      - { label: Abstract (English), name: abstract_en, widget: text, required: false }
+      - { label: Abstract (Chinese), name: abstract_zh, widget: text, required: false }
+      - { label: Featured, name: featured, widget: boolean, default: false }
+
+  - name: experience
+    label: Experience
+    label_singular: Experience
+    folder: content/experience
+    create: true
+    extension: yml
+    format: yaml
+    slug: "{{slug}}"
+    sortable_fields: [start_date, role]
+    fields:
+      - { label: Role (English), name: role, widget: string }
+      - { label: Role (Chinese), name: role_zh, widget: string }
+      - { label: Organisation, name: organisation, widget: string }
+      - { label: Location, name: location, widget: string, required: false }
+      - { label: Start Date, name: start_date, widget: string }
+      - { label: End Date, name: end_date, widget: string, required: false }
+      - { label: Description (English), name: description_en, widget: markdown }
+      - { label: Description (Chinese), name: description_zh, widget: markdown }
+      - { label: Display Order, name: order, widget: number, value_type: int, default: 0 }
+
+  - name: photos
+    label: Photos
+    label_singular: Photo
+    folder: content/photos
+    create: true
+    extension: yml
+    format: yaml
+    slug: "{{slug}}"
+    fields:
+      - { label: Photo Title, name: title, widget: string }
+      - { label: Image, name: image, widget: image }
+      - { label: Alt Text (English), name: alt_en, widget: string, required: false }
+      - { label: Alt Text (Chinese), name: alt_zh, widget: string, required: false }
+      - { label: Caption (English), name: caption_en, widget: string, required: false }
+      - { label: Caption (Chinese), name: caption_zh, widget: string, required: false }
+      - { label: Display Order, name: order, widget: number, value_type: int, default: 0 }
